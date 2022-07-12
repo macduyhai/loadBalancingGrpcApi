@@ -1,0 +1,6 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/ubuntu/go/src/loadBalancingGrpcApi'
+make: Leaving directory '/home/ubuntu/go/src/loadBalancingGrpcApi'
+ 
+make: *** No targets specified and no makefile found.  Stop.
+
