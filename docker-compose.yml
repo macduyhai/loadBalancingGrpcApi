@@ -8,7 +8,8 @@ services:
         - ubuntu:16.04
         - golang:1.17
     depends_on:
-      - mysql-chat
+      - mysql-chat:
+         - condition: service_healthy
     image: chatserver1:v1.0.0
     volumes:
       - ./chat-server-1/storage:/app/storage
@@ -28,7 +29,8 @@ services:
         - ubuntu:16.04
         - golang:1.17 
     depends_on:
-      - mysql-chat
+      - mysql-chat:
+         - condition: service_healthy
     image: chatserver2:v1.0.0
     volumes:
       - ./chat-server-2/storage:/app/storage
@@ -54,9 +56,14 @@ services:
     networks:
      - chat-net
     environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "no"
       MYSQL_DATABASE: chatdb
       MYSQL_ROOT_PASSWORD: 1234
       TZ: Asia/Ho_Chi_Minh
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
   # ngnix-server:
   #     image: nginx:1.13
   #     ports: 
