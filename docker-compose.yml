@@ -1,4 +1,4 @@
-version: "3.4"
+version: "2.2"
 services:
   chat-server-1:
     build:
@@ -8,8 +8,8 @@ services:
         - ubuntu:16.04
         - golang:1.17
     depends_on:
-      - mysql-chat:
-         - condition: service_healthy
+      mysql-chat:
+        condition: service_started
     image: chatserver1:v1.0.0
     volumes:
       - ./chat-server-1/storage:/app/storage
@@ -29,8 +29,8 @@ services:
         - ubuntu:16.04
         - golang:1.17 
     depends_on:
-      - mysql-chat:
-         - condition: service_healthy
+      mysql-chat:
+        condition: service_started
     image: chatserver2:v1.0.0
     volumes:
       - ./chat-server-2/storage:/app/storage
