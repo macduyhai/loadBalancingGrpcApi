@@ -61,7 +61,8 @@ services:
       MYSQL_ROOT_PASSWORD: 1234
       TZ: Asia/Ho_Chi_Minh
     healthcheck:
-      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      # test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      test: ["CMD","/usr/bin/mysql --user=root --password=1234 --execute \"SHOW DATABASES;\""]
       timeout: 20s
       retries: 10
   ngnix-server:
