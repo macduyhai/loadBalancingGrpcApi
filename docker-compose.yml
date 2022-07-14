@@ -49,7 +49,7 @@ services:
     restart: always
     ports:
       - "3309:3306"
-    command: --default-authentication-plugin=mysql_native_password --init-file /data/application/init.sql
+    command: --init-file /data/application/init.sql --default-authentication-plugin=mysql_native_password 
     volumes:
       - db_data:/var/lib/mysql
       - ./sql/init.sql:/data/application/init.sql
