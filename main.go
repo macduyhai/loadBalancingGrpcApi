@@ -7,7 +7,7 @@ import (
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"github.com/macduyhai/loadBalancingGrpcApi/config"
-	"github.com/macduyhai/loadBalancingGrpcApi/routers"
+	routers "github.com/macduyhai/loadBalancingGrpcApi/routers"
 )
 
 func main() {
