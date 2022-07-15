@@ -1,4 +1,4 @@
-package rounters
+package Routers
 
 import (
 	"github.com/macduyhai/loadBalancingGrpcApi/controllers"
@@ -10,18 +10,18 @@ import (
 	"github.com/macduyhai/loadBalancingGrpcApi/services"
 )
 
-type Rounter struct {
+type Router struct {
 	config *config.Config
 	db     *gorm.DB
 }
 
 // Tao ham de chua thong tin
-func NewRounter(conf *config.Config, db *gorm.DB) Rounter {
-	return Rounter{config: conf, db: db}
+func NewRouter(conf *config.Config, db *gorm.DB) Router {
+	return Router{config: conf, db: db}
 }
 
 // khoi tao gin Engine
-func (router *Rounter) InitGin() (*gin.Engine, error) {
+func (router *Router) InitGin() (*gin.Engine, error) {
 	provider := services.NewProviderService(router.config, router.db)
 	controller := controllers.NewController(provider)
 

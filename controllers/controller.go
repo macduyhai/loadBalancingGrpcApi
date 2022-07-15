@@ -48,7 +48,8 @@ func (ctl *Controller) Create(context *gin.Context) {
 		utilitys.ResponseError400(context, err.Error())
 		return
 	}
-	timeNow := utilitys.TimeIn("Asia/Ho_Chi_Minh")
+	// timeNow := utilitys.TimeIn("Asia/Ho_Chi_Minh")
+	timeNow := time.Now()
 	us := models.User{
 		Username:   request.Username,
 		Password:   request.Password,
@@ -74,7 +75,8 @@ func (ctl *Controller) Edit(context *gin.Context) {
 		utilitys.ResponseError400(context, "Edit error")
 		return
 	}
-	timeNow := utilitys.TimeIn("Asia/Ho_Chi_Minh")
+	// timeNow := utilitys.TimeIn("Asia/Ho_Chi_Minh")
+	timeNow := time.Now()
 	us := models.User{
 		Username:   request.Username,
 		Fullname:   request.Fullname,
@@ -98,7 +100,8 @@ func (ctl *Controller) Delete(context *gin.Context) {
 		utilitys.ResponseError400(context, "Edit error")
 		return
 	}
-	timeNow := utilitys.TimeIn("Asia/Ho_Chi_Minh")
+	// timeNow := utilitys.TimeIn("Asia/Ho_Chi_Minh")
+	timeNow := time.Now()
 	us := models.User{
 		Username:   request.Username,
 		UpdateTime: &timeNow,

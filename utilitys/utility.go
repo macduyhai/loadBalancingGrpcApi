@@ -4,6 +4,7 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"errors"
+	"log"
 	"strings"
 	"time"
 
@@ -115,7 +116,7 @@ func GetUserID(context *gin.Context) (int64, error) {
 func TimeIn(name string) time.Time {
 	loc, err := time.LoadLocation(name)
 	if err != nil {
-		panic(err)
+		log.Printf("Error set time %s:%v", name, err)
 	}
 	return time.Now().In(loc)
 }

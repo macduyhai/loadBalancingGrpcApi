@@ -7,14 +7,18 @@ import (
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"github.com/macduyhai/loadBalancingGrpcApi/config"
-	"github.com/macduyhai/loadBalancingGrpcApi/rounters"
+	"github.com/macduyhai/loadBalancingGrpcApi/routers"
 )
 
 func main() {
 	log.Println("Start backend basic !")
 	var IdServer = os.Getenv("ID")
 	log.Printf("ID Server:%s", IdServer)
-
+	defer func() {
+		if err := recover(); err != nil {
+			log.Printf("Error:%v", err)
+		}
+	}()
 	// Load config from env file
 	conf := config.NewConfig()
 	if conf == nil {
@@ -37,7 +41,7 @@ func main() {
 	}()
 
 	// Init router request
-	router := rounters.NewRounter(conf, db)
+	router := routers.NewRouter(conf, db)
 	app, err := router.InitGin()
 	if err != nil {
 		log.Println("Init Gin error:" + err.Error())
